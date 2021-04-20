@@ -20,9 +20,9 @@ for(let i=0;i<filepath.length;i++){
       return;
    }
 }
-let finalfile="";
+let totalcontent="";
 for(let i=0;i<filepath.length;i++){
-  finalfile=finalfile+fs.readFileSync(filepath[i]).toString()+"\n";
+  totalcontent=totalcontent+fs.readFileSync(filepath[i]).toString()+"\n";
 }
 // Implementing command 3(-s) 
 let isSOption=options.includes('-s');
@@ -30,7 +30,7 @@ if(isSOption){
    //empty line break remove
    //console.log totalcontent
    //identify empty line breaks
-   let contentarray=finalfile.split("\r\n");
+   let contentarray=totalcontent.split("\r\n");
    console.log(contentarray);
    //remove  
    let tempArr=[];
@@ -39,8 +39,23 @@ if(isSOption){
             tempArr.push(contentarray[i]);
         }
    }
-   finalfile=tempArr.join("\n");
+   totalcontent=tempArr.join("\n");
 
 }
-console.log(finalfile);
+//console.log(finalfile);
+let isN=options.includes("-n");
+if(isN){
+   let count=1;
+   let contentArr=totalcontent.split("\r\n");
+
+   for(let i=0;i<contentArr.length;i++){
+      contentArr[i]=count+" ."+contentArr[i];
+      count++;
+   }
+
+   totalcontent = contentArr.join("\r\n");
+}
+console.log(totalcontent);
+
+
 

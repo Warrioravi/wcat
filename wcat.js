@@ -20,9 +20,27 @@ for(let i=0;i<filepath.length;i++){
       return;
    }
 }
-let file="";
+let finalfile="";
 for(let i=0;i<filepath.length;i++){
-  file=file+fs.readFileSync(filepath[i]).toString();
+  finalfile=finalfile+fs.readFileSync(filepath[i]).toString()+"\n";
 }
-console.log(file);
+// Implementing command 3(-s) 
+let isSOption=options.includes('-s');
+if(isSOption){
+   //empty line break remove
+   //console.log totalcontent
+   //identify empty line breaks
+   let contentarray=finalfile.split("\r\n");
+   console.log(contentarray);
+   //remove  
+   let tempArr=[];
+   for(let i=0;i<contentarray.length;i++) {
+        if(contentarray[i]!=""){
+            tempArr.push(contentarray[i]);
+        }
+   }
+   finalfile=tempArr.join("\n");
+
+}
+console.log(finalfile);
 

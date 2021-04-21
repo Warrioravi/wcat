@@ -46,7 +46,23 @@ if(isSOption){
 }
 // Implementing command(-n) >> Puts a number to every line
 let isN=options.includes("-n");
+let isB=options.includes("-b");
+let finalOption;
+
 if(isN){
+   if(isB){
+      //both commands are mutually exclusive so first input will run only
+      finalOption=options.indexOf("-n")<options.indexOf("-b")? "-n" : "-b";
+   }
+   else{
+      finalOption="-n";
+   }
+}
+else if(isB){
+   finalOption="-b";
+}
+
+if(finalOption=="-n"){
    let count=1;
    let contentArr=totalcontent.split("\r\n");
 
@@ -58,8 +74,7 @@ if(isN){
    totalcontent = contentArr.join("\r\n");
 }
 
-let isB=options.includes("-b");
-if(isB){
+if(finalOption=="-b"){
    let count=1;
    let contentArr=totalcontent.split("\r\n");
 

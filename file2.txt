@@ -2,6 +2,4 @@ I
 
 am
 
-another
-
-file2
+another file 2
